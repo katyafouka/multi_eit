@@ -3,6 +3,6 @@
 
  Code used to produced results in publication X.
  
- Each file contains code for each section of the paper.
+ Each folder contains code for each section of the paper.
  
  Code is compatible with QuTiP v5.0.

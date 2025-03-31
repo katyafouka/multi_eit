@@ -39,7 +39,7 @@ muB = muB/(2*np.pi)
 muB = muB/1e6  # so it's in 1/2π (MHz T^-1)
 
 # 1Gauss is 0.0001 T
-B = 5e-4
+B = 4e-4
 print(muB*B) 
 
 
@@ -213,8 +213,8 @@ Omega_p[0,0] = Omega_p[0,2] = omega[0]       #σ+ and σ- for F=F[1] to F'= F[0]
 Omega_p[1,0] = Omega_p[1,2] = omega[1]      #σ+ and σ- for F=F[2] to F'=F[0]
 Omega_p[2,0] = Omega_p[2,2] = omega[2]     #σ+ and σ- for F=F[3] to F'=F[0]]
 
-B = 5e-04
-Delta = [0,10,22.633,20]
+B = 4e-04
+Delta = [0,10,22.1,20]
 
 omega0=1.4
 
@@ -222,6 +222,6 @@ Ss = []
 for v in tqdm(np.linspace(-3,3,2000)):
     Ss.append(S_(F=F,Delta=Delta,Omega_p=Omega_p,omega0=v,c=c_ops_))
 
-with open(""+str(path_name)+"data_B5_D21_10_D23_20_O21_O23_"+str(omega[0])+"_O22_"+str(omega[1])+"_omega_1.4.txt",'wb') as f:
+with open(""+str(path_name)+"data_B4_D21_10_D23_20_O21_O23_"+str(omega[0])+"_O22_"+str(omega[1])+"_omega_1.4.txt",'wb') as f:
     np.savetxt(f, np.transpose([np.linspace(-3,3,2000),Ss]),fmt='%.8f')
 

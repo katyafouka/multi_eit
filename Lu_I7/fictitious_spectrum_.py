@@ -290,8 +290,8 @@ Omega_p[0,0] = Omega_p[0,2] = omega[0]       #σ+ and σ- for F=F[1] to F'= F[0]
 Omega_p[1,0] = Omega_p[1,2] = omega[1]      #σ+ and σ- for F=F[2] to F'=F[0]
 Omega_p[2,0] = Omega_p[2,2] = omega[2]     #σ+ and σ- for F=F[3] to F'=F[0]
 
-B = 5e-4
-Delta = [0,10,22.633,20]
+
+Delta = [0,10,22.1,20]
 
 Dmin_ = -3
 Dmax_ = 3
@@ -303,5 +303,5 @@ params = dict(F=F,N=N,Delta=Delta,Omega_p=Omega_p,eta=eta,c=c_ops,Dmin=Dmin_, Dm
 
 pops = steck(**params)
 
-with open(""+str(path_name)+"data_B5_D21_10_D23_20_O21_O23_"+str(omega[0])+"_O22_"+str(omega[1])+"_omega_1.4_steck.txt",'wb') as f:
+with open(""+str(path_name)+"data_B4_D21_10_D23_20_O21_O23_"+str(omega[0])+"_O22_"+str(omega[1])+"_omega_1.4_steck.txt",'wb') as f:
     np.savetxt(f, np.transpose([np.linspace(Dmin_,Dmax_,nn_),pops]),fmt='%.8f')

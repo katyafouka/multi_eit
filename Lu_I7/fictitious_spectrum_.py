@@ -106,7 +106,7 @@ def H1_(F,eta,Omega_p):
         for ig in range(1,len(F)):
             for mFg in range(-F[ig],F[ig]+1):
                 for q in range(-1,2):
-                    H1 += eta[ig-1]*cg(F,ig,mFg,0,mFe,q)*Omega_p[ig-1,q+1]/2*base(F,0,mFe)*base(F,ig,mFg).dag()
+                    H1 += 1j*eta[ig-1]*cg(F,ig,mFg,0,mFe,q)*Omega_p[ig-1,q+1]/2*base(F,0,mFe)*base(F,ig,mFg).dag()
                 
     return -1/np.sqrt(2*F[0]+1)*H1
 
@@ -127,7 +127,7 @@ def H_0(F,Delta):
             H0 += (Delta[l] + gF[l]*muB*mF*B)*base(F,l,mF)*base(F,l,mF).dag() 
     return H0
 
-def steck(F,N,Delta,Omega_p,eta,c,Dmin, Dmax,nn): #fictitious lasers business
+def steck(F,N,Delta,Omega_p,eta,c,Dmin, Dmax,nn):
     H0_ = H_0(F,Delta)
     HI_ = H_I(F,Omega_p) 
     
@@ -168,15 +168,15 @@ def steck(F,N,Delta,Omega_p,eta,c,Dmin, Dmax,nn): #fictitious lasers business
     for Deltap in tqdm(np.linspace(Dmin,Dmax,nn)):
 
 
-        S3 = -np.matmul(inv(L0-3j*Deltap*np.eye(N**2)),L1)
-        #S2 = -np.matmul(inv(L0-2j*Deltap*np.eye(N**2)),L1)
-        S2 = -np.matmul(inv(L0-2j*Deltap*np.eye(N**2)+ np.matmul(L_1,S3)),L1)
+        #S3 = -np.matmul(inv(L0-3j*Deltap*np.eye(N**2)),L1)
+        S2 = -np.matmul(inv(L0-2j*Deltap*np.eye(N**2)),L1)
+        #S2 = -np.matmul(inv(L0-2j*Deltap*np.eye(N**2)+ np.matmul(L_1,S3)),L1)
         S1 = -np.matmul(inv(L0-1j*Deltap*np.eye(N**2) + np.matmul(L_1,S2)),L1)
         #S1 = -np.matmul(inv(L0-1j*Deltap*np.eye(N**2)),L1) 
 
-        T_3 = -np.matmul(inv(L0+3j*Deltap*np.eye(N**2)),L_1)
-        #T_2 = -np.matmul(inv(L0+2j*Deltap*np.eye(N**2)),L_1)
-        T_2 = -np.matmul(inv(L0+2j*Deltap*np.eye(N**2)+ np.matmul(L1,T_3)),L_1)
+        #T_3 = -np.matmul(inv(L0+3j*Deltap*np.eye(N**2)),L_1)
+        T_2 = -np.matmul(inv(L0+2j*Deltap*np.eye(N**2)),L_1)
+        #T_2 = -np.matmul(inv(L0+2j*Deltap*np.eye(N**2)+ np.matmul(L1,T_3)),L_1)
         T_1 = -np.matmul(inv(L0+1j*Deltap*np.eye(N**2)+ np.matmul(L1,T_2)),L_1)
         #T_1 = -np.matmul(inv(L0+1j*Deltap*np.eye(N**2)),L_1)
     
@@ -243,8 +243,8 @@ def steck(F,N,Delta,Omega_p,eta,c,Dmin, Dmax,nn): #fictitious lasers business
                             #expect(base(F,ig,mfg)*base(F,0,mfe).dag(),rho) -(
                                 #expect(base(F,0,mfe)*base(F,ig,mfg).dag(),rho)))
 
-                        rabs+=-1j*2*np.pi*eta[ig-1]*cg(F,ig,mfg,0,mfe,q)*Omega_p[ig-1,q+1]/2*1/np.sqrt(2*F[0]+1)*(
-                            expect(base(F,ig,mfg)*base(F,0,mfe).dag(),Rho_1)-expect(base(F,0,mfe)*base(F,ig,mfg).dag(),Rho1))
+                        rabs+=-2*np.pi*eta[ig-1]*cg(F,ig,mfg,0,mfe,q)*Omega_p[ig-1,q+1]/2*1/np.sqrt(2*F[0]+1)*(
+                            expect(base(F,ig,mfg)*base(F,0,mfe).dag(),Rho_1)+expect(base(F,0,mfe)*base(F,ig,mfg).dag(),Rho1))
 
         #popes[k] = ree
         #coh[k] = rcoh

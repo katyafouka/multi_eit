@@ -158,11 +158,11 @@ def S_(F,Delta,Omega_p,omega0,c): #fluctuation spectrum
     V1rho = V1rho.data_as('ndarray')
 
     #eye = np.array(operator_to_vector(tensor(qeye(N),qeye(Nmotion))))
-    eye = np.eye(N**2,dtype=np.complex_)
-    #inve = -inv((L0+1j*2*np.pi*omega0*eye))
+    #eye = np.eye(N**2,dtype=np.complex_)
+    inve = -inv((L0+1j*2*np.pi*omega0*np.eye(N**2)))
 
-    #s = inve@V1rho
-    s = -spsolve(L0+1j*2*np.pi*omega0*eye,V1rho)
+    s = inve@V1rho
+    #s = -spsolve(L0+1j*2*np.pi*omega0*eye,V1rho)
 
     S = np.zeros((N,N),dtype=np.complex_)
     for i in range(N):

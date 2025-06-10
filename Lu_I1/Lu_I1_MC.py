@@ -113,8 +113,8 @@ def H_I(F,Omega_p):
         for ig in range(1,len(F)):
             for mFg in range(-F[ig],F[ig]+1):
                 for q in range(-1,2):
-                    HI += 2*np.pi*cg(F,ig,mFg,0,mFe,q)*Omega_p[ig-1,q+1]/2*(-1j*eta[ig-1]*y).expm(dtype="csr")*base(F,0,mFe)*base(F,ig,mFg).dag()
-                
+                    #HI += 2*np.pi*cg(F,ig,mFg,0,mFe,q)*Omega_p[ig-1,q+1]/2*(-1j*eta[ig-1]*y).expm(dtype="csr")*base(F,0,mFe)*base(F,ig,mFg).dag()
+                    HI += 2*np.pi*cg(F,ig,mFg,0,mFe,q)*Omega_p[ig-1,q+1]/2*base(F,0,mFe)*base(F,ig,mFg).dag()*(tensor(qeye(Natomic),qeye(Nmotion)) +1j*eta[ig-1]*y)
     return 1/np.sqrt(2*F[0]+1)*(HI + HI.dag()) 
 
 def H_0(F,Delta):

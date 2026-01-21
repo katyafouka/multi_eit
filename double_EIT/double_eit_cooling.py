@@ -34,9 +34,9 @@ m = tensor(basis(Natomic,3),qeye(Nmotion))
 
 
 #Hamiltonian for a moving ion
-H1 = pi*(Omegasm*(-1j*y).expm()*e*p.dag() - Omegap*(1j*y).expm()*e*z.dag() + Omegasp*(-1j*y).expm()*e*m.dag())
+H1 = pi*(Omegasm*(-1j*y).expm()*e*p.dag() + Omegap*(1j*y).expm()*e*z.dag() + Omegasp*(-1j*y).expm()*e*m.dag())
 H2 = 2*pi*(0.5*Omegasm*(1j*y).expm()*p*e.dag() + (Deltad + deltab)*p*p.dag())
-H3 = 2*pi*(-0.5*Omegap*(-1j*y).expm()*z*e.dag() + Deltap*z*z.dag())
+H3 = 2*pi*(0.5*Omegap*(-1j*y).expm()*z*e.dag() + Deltap*z*z.dag())
 H4 = 2*pi*(0.5*Omegasp*(1j*y).expm()*m*e.dag() + (Deltad - deltab)*m*m.dag())
 
 H5 = 2*pi*omega*a.dag()*a
